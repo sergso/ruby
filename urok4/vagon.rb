@@ -8,18 +8,18 @@ module InstanceCounter
   end
   module ClassMethods
     def instance4s
-      #@@vagon_count_all ||= 0
-      @@vagon_count_all
+      vagon_count_all
     end
   end
   #protected
   module InstaceMethods
     def register_instance
-      @@vagon_count_all += 1
+      up_count
     end
 
   end
 end
+
 
 class Vagon
   attr_reader :vagon_number, :vagon_type, :vagon_hook
@@ -35,6 +35,10 @@ class Vagon
     @vagon_number = @@vagon_count_all += 1
     self.class.vagons[@vagon_number] = self
     @vagon_hook = 0
+  end
+
+  def up_count
+    @@vagon_count_all += 1
   end
 
   def vagon_count_all
