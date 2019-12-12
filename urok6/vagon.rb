@@ -1,5 +1,6 @@
 PASS = "pass"
 CARGO = "cargo"
+VOLUME = 100
 
 module InstanceCounter
   def self.included(base)
@@ -55,12 +56,28 @@ class Vagon
 end
 
 class Vagon_cargo < Vagon
-  private
+  attr_accessor :volume
+  #private
   def initialize
     @vagon_type = CARGO
+    @volume = 100
     super
   end
+  def self.vagon_load(vagon,volume)
+    if self.vagons[vagon].volume >= volume
+      self.vagons[vagon].volume -= volume
+    else
+      puts "Попытка  перегруза вагона: Доступно: #{self.vagons[vagon].volume}"
+    end
+  end
 
+  def self.list_volume(vagon)
+    puts "Для вагона #{vagon} -  доступно для погрузки: #{self.vagons[vagon].volume}"
+  end
+  def self.list_free(vagon)
+   #puts "#{VOLUME}"
+    puts "B вагонe #{vagon} -  уже загружено: #{VOLUME - self.vagons[vagon].volume}"
+  end
 end
 
 class Vagon_pass < Vagon
@@ -68,27 +85,49 @@ class Vagon_pass < Vagon
   #private
   def initialize
     @vagon_type = PASS
-    @plaсes = Array.new(100, 0)
+    @places = Array.new(100, 0)
     super
-    #self.class.vagons[@vagon_number].plaсes = Array.new(100, 0)
-    
+  end
+
+  def self.list_occupy(vagon)
+    occupy = 0
+    i = 0
+    while i < self.vagons[vagon].places.size do
+      if self.vagons[vagon].places[i] == 1
+        occupy +=1
+      end
+      i +=1
+    end
+    puts "Занятых мест в вагоне #{vagon} - #{occupy}"
+  end
+
+  def self.list_free(vagon)
+    free = 0
+    i = 0
+    while i < self.vagons[vagon].places.size do
+      if self.vagons[vagon].places[i] == 0
+        free +=1
+      end
+      i +=1
+    end
+    puts "Свободныхых мест в вагоне #{vagon} - #{free}"
   end
   def self.occupy_place(vagon,place = "any")
     
     if place == "any"
       i = 0
-      while i < @places.size do
-        if self.vagons[vagon].plaсes[i] == 0
-          self.vagons[vagon].plaсes[i] = 1
-           i +=1
+      while i < self.vagons[vagon].places.size do
+        if self.vagons[vagon].places[i] == 0
+          self.vagons[vagon].places[i] = 1
           break
         end
+        i +=1
       end
     else 
-      if self.vagons[vagon].plaсes[place] == 1
+      if self.vagons[vagon].places[place] == 1
         puts "Это место уже занято"
       else
-        self.vagons[vagon].plaсes[place] = 1
+        self.vagons[vagon].places[place] = 1
       end
     end
   end
