@@ -1,3 +1,6 @@
+PASS = "pass"
+CARGO = "cargo"
+
 class Station
   attr_reader :station_number, :station_name, :station_train
   #attr_writer :station_train
@@ -12,6 +15,7 @@ class Station
     @@all_station << self
   end
 
+
   def self.all
     @@all_station.each {|st| puts "#{st.station_name}"}
 
@@ -24,29 +28,6 @@ class Station
   def self.station_count_all
     @@station_count_all
   end
-
-#Принимать поезда
-  # def station_take(train)
-  #   @station_train << train
-  #   puts "На станцию #{station_name} прибыл поезд #{train.train_number}"
-  # end
-
-#отправка поезда
-  # def station_send(train)
-  #   @station_train.delete(train)
-  #   puts "Со станции #{station_name} убыл поезд #{train}"
-  # end
-
-#Отобразить поезда на танции
-
-  # def station_train
-  #   puts "На станции #{station_name} находятся следующие поезда:"
-
-  #   @station_train.each do |tr|
-  #     puts "#{tr.train_number} \n"
-  #   end
-  #   # puts "#{st.station_train[1]}"
-  # end
 
   def station_train_type(type = nil)
     if (type == @pass) or (type == @gruz)
@@ -65,7 +46,28 @@ class Station
       end
     end
   end
+
+  
+
+  
 end
+
+def list_train(station=2)
+  yield(station) if block_given?
+
+end
+
+list_train do |station|
+  $station.each do |st|
+    if st.station_number == station
+      st.station_train.each do |tr|
+        puts tr.train_number
+      end
+    end
+  end
+end
+
+
 
 def station_create
   $station ||=[]
