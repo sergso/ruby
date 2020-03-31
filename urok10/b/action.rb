@@ -1,5 +1,5 @@
 class Action
-  att_reader :score
+  attr_reader :score
   CARD_LIMIT = 3
   BLACK_JET = 21
 

@@ -1,12 +1,17 @@
+require_relative 'action'
 class User
-  att_reader :name
-  def initialize_copy
-    name = gets.chomp
-    enter_name(name)
-    
-  end
-  def enter_name(name)
+  attr_accessor :name, :cash, :action
+  def initialize(name)
     @name = name
+    @cash = 100
+    @action = Action.new
+  end
+  
+  def stat
+    puts "Игрок #{name} "
+  end
+  def can_take_card?
+
   end
 
 

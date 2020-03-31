@@ -18,4 +18,11 @@ class Coloda
       end
     end
   end
+  def reset_coloda
+    @card = []
+    fill_coloda
+    @cars.shuffle!
+  end
+
+  
 end
