@@ -1,3 +1,4 @@
+require_relative 'card'
 class Action
   attr_reader :score
   CARD_LIMIT = 3
@@ -10,7 +11,7 @@ class Action
 
   def add_card(card)
     @card << card
-    @score +=10 if CARD::PICTURE.include?(card.value) and (card.value != 'A')
+    @score +=10 if Card::PICTURE.include?(card.value) && (card.value != 'A')
     if card.value == 'A'
       if (@score + 11) <= BLACK_JET
         @score +=11

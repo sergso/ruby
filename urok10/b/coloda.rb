@@ -6,8 +6,8 @@ class Coloda
     @card ||= []
     fill_coloda
     @card.shuffle!
-
   end
+
   def fill_coloda
     Card::MAST.each do |mast|
       (2..10).each do |value|
@@ -18,11 +18,10 @@ class Coloda
       end
     end
   end
+
   def reset_coloda
     @card = []
     fill_coloda
     @cars.shuffle!
   end
-
-  
 end
