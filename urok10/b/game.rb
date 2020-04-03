@@ -6,7 +6,7 @@ require_relative 'interface'
 class Game
   #Ставка за игру
   BET = 10
-  attr_accessor :interface, :username, :player, :dealer, :coloda
+  attr_accessor :interface, :username, :coloda
   def initialize(coloda)
     @interface = Interface.new
     username = @interface.init_user
@@ -44,3 +44,4 @@ class Game
     @dealer.make_bet(BET)
   end
 end
+g = Game.new(Coloda.new)

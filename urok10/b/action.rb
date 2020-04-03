@@ -8,17 +8,20 @@ class Action
     @card = []
     @score = 0
   end
-
+  def choice_score
+    if (@score + 11) <= BLACK_JET
+      @score +=11
+    else 
+      @score +=1
+    end
+  end
   def add_card(card)
     @card << card
-    @score +=10 if Card::PICTURE.include?(card.value) && (card.value != 'A')
+    @score += 10 if Card::PICTURE.include?(card.value) && (card.value != 'A')
     if card.value == 'A'
-      if (@score + 11) <= BLACK_JET
-        @score +=11
-      else 
-        @score +=1
-      end
+      choice_score
     end
+    @score +=card.value.to_i if ('2'..'10').include?(card.value)
   end
   def reset
     @score = 0

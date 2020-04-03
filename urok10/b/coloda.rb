@@ -22,6 +22,6 @@ class Coloda
   def reset_coloda
     @card = []
     fill_coloda
-    @cars.shuffle!
+    @card.shuffle!
   end
 end
