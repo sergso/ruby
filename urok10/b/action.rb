@@ -1,6 +1,6 @@
 require_relative 'card'
 class Action
-  attr_reader :score
+  attr_accessor :score
   CARD_LIMIT = 3
   BLACK_JET = 21
 
@@ -10,18 +10,21 @@ class Action
   end
   def choice_score
     if (@score + 11) <= BLACK_JET
-      @score +=11
+      @score += 11
     else 
-      @score +=1
+      @score += 1
     end
+    puts @score
   end
   def add_card(card)
     @card << card
-    @score += 10 if Card::PICTURE.include?(card.value) && (card.value != 'A')
+    if Card::PICTURE.include?(card.value) && (card.value != 'A')
+      @score += 10
+    end
     if card.value == 'A'
       choice_score
     end
-    @score +=card.value.to_i if ('2'..'10').include?(card.value)
+    @score += card.value.to_i if (2..10).include?(card.value)
   end
   def reset
     @score = 0

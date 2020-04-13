@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'user'
 require_relative 'coloda'
 require_relative 'dealer'
@@ -6,7 +7,7 @@ require_relative 'interface'
 class Game
   #Ставка за игру
   BET = 10
-  attr_accessor :interface, :username, :coloda
+  attr_accessor :interface, :username, :coloda, :player, :coloda
   def initialize(coloda)
     @interface = Interface.new
     username = @interface.init_user
@@ -44,4 +45,8 @@ class Game
     @dealer.make_bet(BET)
   end
 end
-g = Game.new(Coloda.new)
+#g = Game.new(Coloda.new)
+#g.deal_cards
+#g.player
+
+#g.instance_variable_get(:@player)
