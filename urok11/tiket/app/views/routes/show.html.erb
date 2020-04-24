@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Начальная станция: </strong>
+  <%= @route.first_name %>
+</p>
+
+<p>
+  <strong>Конечная станция: </strong>
+  <%= @route.last_name %>
+</p>
+
+<%= link_to 'Изменить', edit_route_path(@route) %>
+<%= link_to 'Венуться', routes_path %>

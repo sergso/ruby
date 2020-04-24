@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>R Stations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @r_stations.each do |r_station| %>
+      <tr>
+        <td><%= r_station.title %></td>
+        <td><%= link_to 'Show', r_station %></td>
+        <td><%= link_to 'Edit', edit_r_station_path(r_station) %></td>
+        <td><%= link_to 'Destroy', r_station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New R Station', new_r_station_path %>

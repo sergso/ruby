@@ -1,0 +1,17 @@
+<h1>New Article</h1>
+
+<%= form_with scope: :article, local: true do |form| %>
+  <p>
+    <%= form.label :title_Base_name %><br>
+    <%= form.text_field :title_bane %>
+  </p>
+
+  <p>
+    <%= form.label :text_Base_name %><br>
+    <%= form.text_area :text_bane %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

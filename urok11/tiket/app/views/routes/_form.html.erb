@@ -1,0 +1,25 @@
+<%= form_with(model: route, local: true) do |form| %>
+  <% if route.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(r_station.errors.count, "error") %> prohibited this r_station from being saved:</h2>
+
+      <ul>
+        <% route.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_station %>
+    <%= form.text_field :first_station %>
+  </div>
+  <%= form.label :last_station %>
+    <%= form.text_field :last_station %>
+  </div>
+  <div class="actions">
+  </br>
+    <%= form.submit %>
+  </div>
+<% end %>
